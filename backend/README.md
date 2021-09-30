@@ -12,4 +12,4 @@ npx hardhat node
 ```sh
 npx hardhat run scripts/deploy.js --network localhost
 ```
-
+### the previous command should have printed out the deployed contract address
