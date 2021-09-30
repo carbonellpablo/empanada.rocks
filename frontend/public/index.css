@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+body {
+  padding: 5vw;
+  background-color: #13315c;
+  color: rgb(253, 242, 192);
+}
+
+h2 {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+a {
+  color: rgb(253, 242, 192);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+p {
+  text-align: left;
+  font-weight: 500;
+  padding-bottom: 15px;
+}
+
+div {
+  margin-bottom: 10vw;
+}
