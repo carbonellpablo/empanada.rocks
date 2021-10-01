@@ -51,10 +51,18 @@ function App(): JSX.Element {
   const [supplyLeft, setSupplyLeft] = useState<boolean>(true);
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault();
-    getEmpanada();
+    if (typeof window.ethereum !== 'undefined') {
+      getEmpanada();
+    }
   };
   const handleInfoClick = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (typeof window.ethereum !== 'undefined') {
+      getContractInfo();
+    }
+  };
+
+  async function getContractInfo() {
     setLoading(true);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -82,39 +90,36 @@ function App(): JSX.Element {
 
     setContractInfo(info);
     setLoading(false);
-  };
-
+  }
   async function getEmpanada() {
     setLoading(true);
     try {
-      if (typeof window.ethereum !== 'undefined') {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-        await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
+      await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      });
 
-        const signer = provider.getSigner();
+      const signer = provider.getSigner();
 
-        const contract = new ethers.Contract(
-          NFTfactory.address,
-          NFTfactory.abi,
-          signer
-        );
+      const contract = new ethers.Contract(
+        NFTfactory.address,
+        NFTfactory.abi,
+        signer
+      );
 
-        const account = await signer.getAddress();
+      const account = await signer.getAddress();
 
-        const prevTokenID = await getTokenIdByAccount(account, contract);
-        const NFTleft = await isThereSupplyLeft(contract);
-        const tempTokenId =
-          prevTokenID === 0 && NFTleft
-            ? await mint(account, contract)
-            : prevTokenID;
+      const prevTokenID = await getTokenIdByAccount(account, contract);
+      const NFTleft = await isThereSupplyLeft(contract);
+      const tempTokenId =
+        prevTokenID === 0 && NFTleft
+          ? await mint(account, contract)
+          : prevTokenID;
 
-        setSupplyLeft(NFTleft);
-        setTokenId(tempTokenId);
-        setLoading(false);
-      }
+      setSupplyLeft(NFTleft);
+      setTokenId(tempTokenId);
+      setLoading(false);
     } catch (e) {
       setLoading(false);
       setError(true);
