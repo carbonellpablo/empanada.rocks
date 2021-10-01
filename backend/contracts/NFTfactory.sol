@@ -28,10 +28,11 @@ contract NFTfactory is ERC721, ERC721Enumerable, Ownable {
         return baseURI;
     }
 
-    function safeMint(address to) public {
+    function safeMint() public {
         uint256 supply = totalSupply();
         require(supply <= maxSupply - 1);
-        _safeMint(to, _tokenIdCounter.current());
+        require(balanceOf(msg.sender) < 1);
+        _safeMint(msg.sender, _tokenIdCounter.current());
         _tokenIdCounter.increment();
     }
 
