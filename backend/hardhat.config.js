@@ -1,11 +1,12 @@
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-ethernal");
-// You need to export an object to set up your config
-// Go to https://hardhat.org/config/ to learn more
+const { deploy } = require("./config.js");
+const { rinkeby_alchemy__api_key, rinkeby_private_key } = deploy;
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
+
 module.exports = {
   solidity: "0.8.3",
   paths: {
@@ -14,6 +15,10 @@ module.exports = {
   networks: {
     hardhat: {
       chainId: 1337,
+    },
+    rinkeby: {
+      url: `${rinkeby_alchemy__api_key}`,
+      accounts: [`0x${rinkeby_private_key}`],
     },
   },
 };
