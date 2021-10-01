@@ -26,9 +26,10 @@ module.exports = {
     'react/prop-types': 'off',
     'react/self-closing-comp': 'warn',
     'react/jsx-uses-react': 'warn',
+    'prefer-const': 'warn',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
-      2,
+      1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
     'padding-line-between-statements': [
