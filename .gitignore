@@ -126,3 +126,4 @@ yarn-debug.log*
 yarn-error.log*
 
 artifacts/
+cache/

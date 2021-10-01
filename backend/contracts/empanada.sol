@@ -9,19 +9,28 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract Empanada is ERC721, ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
 
+    string public baseURI;
+    uint256 public maxSupply;
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("Empanada", "EMP") {
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        string memory _baseURIConstructor,
+        uint256 _maxSupply
+    ) ERC721(_name, _symbol) {
+        baseURI = _baseURIConstructor;
+        maxSupply = _maxSupply;
         _tokenIdCounter.increment();
     }
 
-    function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://QmdWTjeNuTQi9VnMpxHhVmjmqrJFwRGHWke3gpioJjoKFw/";
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
 
     function safeMint(address to) public {
         uint256 supply = totalSupply();
-        require(supply <= 11);
+        require(supply <= maxSupply - 1);
         _safeMint(to, _tokenIdCounter.current());
         _tokenIdCounter.increment();
     }
