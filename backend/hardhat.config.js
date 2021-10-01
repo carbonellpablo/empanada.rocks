@@ -9,7 +9,7 @@ require("hardhat-ethernal");
 module.exports = {
   solidity: "0.8.3",
   paths: {
-    artifacts: "../frontend/artifacts",
+    artifacts: "../frontend/src/artifacts",
   },
   networks: {
     hardhat: {
