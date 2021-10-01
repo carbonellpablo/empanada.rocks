@@ -15,7 +15,6 @@ async function main() {
     name: "Empanada",
     address: empanada.address,
   });
-  console.log("empanada deployed to:", empanada.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
