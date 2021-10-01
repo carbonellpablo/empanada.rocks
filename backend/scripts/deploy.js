@@ -7,13 +7,13 @@ const { name, symbol, baseURI, maxSupply } = require("../config.js");
 const hre = require("hardhat");
 
 async function main() {
-  const Empanada = await hre.ethers.getContractFactory("Empanada");
-  const empanada = await Empanada.deploy(name, symbol, baseURI, maxSupply);
-  await empanada.deployed();
-  console.log("empanada deployed to:", empanada.address);
+  const NFTfactory = await hre.ethers.getContractFactory("NFTfactory");
+  const contract = await NFTfactory.deploy(name, symbol, baseURI, maxSupply);
+  await contract.deployed();
+  console.log("NFT factory for " + name + " deployed to:", contract.address);
   await hre.ethernal.push({
-    name: "Empanada",
-    address: empanada.address,
+    name: "NFTfactory",
+    address: contract.address,
   });
 }
 

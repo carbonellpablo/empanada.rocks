@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract Empanada is ERC721, ERC721Enumerable, Ownable {
+contract NFTfactory is ERC721, ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
 
     string public baseURI;
