@@ -30,8 +30,8 @@ contract NFTfactory is ERC721, ERC721Enumerable, Ownable {
 
     function safeMint() public {
         uint256 supply = totalSupply();
-        require(supply <= maxSupply - 1);
-        require(balanceOf(msg.sender) < 1);
+        require(supply <= maxSupply - 1, "There are no more NFTs left");
+        require(balanceOf(msg.sender) < 1, "Only one NFT per wallet");
         _safeMint(msg.sender, _tokenIdCounter.current());
         _tokenIdCounter.increment();
     }
