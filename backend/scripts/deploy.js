@@ -1,4 +1,5 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional 
+const { name, symbol, baseURI, maxSupply } = require("../config.js");
+// We require the Hardhat Runtime Environment explicitly here. This is optional
 // but useful for running the script in a standalone fashion through `node <script>`.
 //
 // When running the script with `hardhat run <script>` you'll find the Hardhat
@@ -7,8 +8,13 @@ const hre = require("hardhat");
 
 async function main() {
   const Empanada = await hre.ethers.getContractFactory("Empanada");
-  const empanada = await Empanada.deploy();
+  const empanada = await Empanada.deploy(name, symbol, baseURI, maxSupply);
   await empanada.deployed();
+  console.log("empanada deployed to:", empanada.address);
+  await hre.ethernal.push({
+    name: "Empanada",
+    address: empanada.address,
+  });
   console.log("empanada deployed to:", empanada.address);
 }
 
@@ -16,7 +22,7 @@ async function main() {
 // and properly handle errors.
 main()
   .then(() => process.exit(0))
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });
