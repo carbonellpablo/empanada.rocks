@@ -70,11 +70,14 @@ function App(): JSX.Element {
       signer
     );
     const info = {
-      name: await contract.name(),
-      symbol: await contract.symbol(),
-      owner: await contract.owner(),
-      baseURI: await contract.baseURI(),
-      leftToMint: 12 - (await contract.totalSupply()),
+      contractInfo: {
+        address: NFTfactory.address,
+        name: await contract.name(),
+        symbol: await contract.symbol(),
+        owner: await contract.owner(),
+        baseURI: await contract.baseURI(),
+        leftToMint: 12 - (await contract.totalSupply()),
+      },
     };
 
     setContractInfo(info);
@@ -145,34 +148,17 @@ function App(): JSX.Element {
         <p>Sorry! there are no empanadas left!</p>
       )}
       <button onClick={handleInfoClick}>Print contract info</button>
-      {contractInfo ? <pre>{JSON.stringify(contractInfo)}</pre> : null}
+      {contractInfo ? <pre>{JSON.stringify(contractInfo, null, 2)}</pre> : null}
       {error ? (
         <p>There was an error. Please check the console for details</p>
       ) : null}
+      <a href="https://github.com/carbonellpablo/empanada.rocks">
+        <h2>Github repository</h2>
+      </a>
       <div className="content">
-        <h2>About</h2>
-        <p>Total supply: 12 NFT</p>
-        <p>Max mint per address: 1 NFT</p>
-        <p>
-          <a href="https://github.com/carbonellpablo/empanada.rocks">
-            Github repository
-          </a>
-          <p>
-            <a
-              href={`https://rinkeby.etherscan.io/address/${NFTfactory.address}`}
-            >
-              Contract address
-            </a>
-          </p>
-        </p>
-      </div>
-
-      <div className="content">
-        <h2>Instructions</h2>
         <p>Only works on desktop, not mobile.</p>
         <p>You need to have the browser extension Metamask installed.</p>
         <p>Make sure you are on the &apos;Rinkeby&apos; network.</p>
-        <p>Click on the button above!</p>
       </div>
     </div>
   );

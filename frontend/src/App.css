@@ -24,7 +24,8 @@ a {
   text-decoration: none;
 }
 
-p {
+p,
+pre {
   text-align: left;
   font-weight: 500;
   padding-bottom: 15px;
