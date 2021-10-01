@@ -129,7 +129,7 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <h1>empanda.rocks</h1>
+      <h1>empanada.rocks</h1>
       <h2>An NFT collection featuring 12 empanadas</h2>
       <img src="./base.png" width="400px" height="400px" />
 
